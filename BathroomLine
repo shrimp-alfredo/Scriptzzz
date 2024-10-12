@@ -61,6 +61,7 @@ for _, plr in pairs(game.Players:GetPlayers()) do
 end
 
 game.Players.PlayerAdded:Connect(function(plr)
+	local character = player.Character or player:WaitForChild("Character")
 	plr.Character:WaitForChild("Head", 10)
 	task.spawn(function()
 		intregratePlrToMoneyESP(plr)
