@@ -1,0 +1,77 @@
+local StarterGui = game:GetService("StarterGui")
+
+local function numToScientificAbbreviation(num)
+	if num == nil then StarterGui:SetCore("SendNotification", { Title = "Error"; Text = "Your money is nil"; Duration = 2; Button1 = "k bro"; }) return "nil" end
+	local stringnum = tostring(num)
+	if #stringnum <= 3 then
+		return stringnum
+	elseif #stringnum == 4 then
+		return string.sub(stringnum, 1, 1) .. "." .. string.sub(stringnum, 2, 2) .. "K"
+	elseif #stringnum == 5 then
+		return string.sub(stringnum, 1, 2) .. "." ..  string.sub(stringnum, 3, 3) .. "K"
+	elseif #stringnum == 6 then
+		return string.sub(stringnum, 1, 3) .. "K"
+	elseif #stringnum == 7 then
+		return string.sub(stringnum, 1, 1) .. "." ..  string.sub(stringnum, 2, 2) .. "M"
+	elseif #stringnum == 8 then
+		return string.sub(stringnum, 1, 2) .. "." ..  string.sub(stringnum, 3, 3) .. "M"
+	elseif #stringnum == 9 then
+		return string.sub(stringnum, 1, 3) .. "M"
+	elseif #stringnum == 10 then
+		return string.sub(stringnum, 1, 1) .. "." ..  string.sub(stringnum, 2, 2) .. "B"
+	elseif #stringnum == 11 then
+		return string.sub(stringnum, 1, 2) .. "." ..  string.sub(stringnum, 3, 3) .. "B"
+	elseif #stringnum == 12 then
+		return string.sub(stringnum, 1, 3) .. "B"
+	elseif #stringnum == 13 then
+		return string.sub(stringnum, 1, 1) .. "." ..  string.sub(stringnum, 2, 2) .. "T"
+	elseif #stringnum == 14 then
+		return string.sub(stringnum, 1, 2) .. "." ..  string.sub(stringnum, 3, 3) .. "T"
+	elseif #stringnum == 15 then
+		return string.sub(stringnum, 1, 3) .. "T"
+	else
+		return string.sub(stringnum, 1, 4) .. "T"
+	end
+end
+
+local function intregratePlrToMoneyESP(plr)
+	if plr.Character.Head:FindFirstChild("MoneyESP") then return end
+	local billboard = Instance.new("BillboardGui", plr.Character.Head)
+	local moneylabel = Instance.new("TextLabel", billboard)
+	local stroke = Instance.new("UIStroke", moneylabel)
+	billboard.Name = "MoneyESP"
+	billboard.Size = UDim2.new(5, 0, 0.75, 0)
+	billboard.StudsOffsetWorldSpace = Vector3.new(0, 1.75, 0)
+	moneylabel.Size = UDim2.new(1, 0, 1, 0)
+	moneylabel.TextColor3 = Color3.fromRGB(0, 255, 0)
+	moneylabel.BackgroundTransparency = 1
+	moneylabel.TextScaled = true
+	moneylabel.TextWrapped = true
+	stroke.Color = Color3.fromRGB(0, 100, 0)
+	stroke.Thickness = 4
+	while task.wait(0.1) do
+		moneylabel.Text =  "Money: $" .. numToScientificAbbreviation(plr:WaitForChild("Money", 10).Value)
+	end
+end
+
+for _, plr in pairs(game.Players:GetPlayers()) do
+	task.spawn(function()
+		intregratePlrToMoneyESP(plr)
+	end)
+end
+
+game.Players.PlayerAdded:Connect(function(plr)
+	plr.Character:WaitForChild("Head", 10)
+	task.spawn(function()
+		intregratePlrToMoneyESP(plr)
+	end)
+end)
+
+
+
+StarterGui:SetCore("SendNotification", {
+	Title = "Successful";
+	Text = "Script has successfully loaded";
+	Duration = 4;
+	Button1 = "k bro";
+})
