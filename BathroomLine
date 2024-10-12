@@ -10,27 +10,27 @@ local function numToScientificAbbreviation(num)
 	elseif #stringnum == 5 then
 		return string.sub(stringnum, 1, 2) .. "." ..  string.sub(stringnum, 3, 3) .. "K"
 	elseif #stringnum == 6 then
-		return string.sub(stringnum, 1, 3) .. "K"
+		return string.sub(stringnum, 1, 3) .. "." ..  string.sub(stringnum, 4, 4) .. "K"
 	elseif #stringnum == 7 then
 		return string.sub(stringnum, 1, 1) .. "." ..  string.sub(stringnum, 2, 2) .. "M"
 	elseif #stringnum == 8 then
 		return string.sub(stringnum, 1, 2) .. "." ..  string.sub(stringnum, 3, 3) .. "M"
 	elseif #stringnum == 9 then
-		return string.sub(stringnum, 1, 3) .. "M"
+		return string.sub(stringnum, 1, 3) .. "." ..  string.sub(stringnum, 4, 4) .. "M"
 	elseif #stringnum == 10 then
 		return string.sub(stringnum, 1, 1) .. "." ..  string.sub(stringnum, 2, 2) .. "B"
 	elseif #stringnum == 11 then
 		return string.sub(stringnum, 1, 2) .. "." ..  string.sub(stringnum, 3, 3) .. "B"
 	elseif #stringnum == 12 then
-		return string.sub(stringnum, 1, 3) .. "B"
+		return string.sub(stringnum, 1, 3) .. "." ..  string.sub(stringnum, 4, 4) .. "B"
 	elseif #stringnum == 13 then
 		return string.sub(stringnum, 1, 1) .. "." ..  string.sub(stringnum, 2, 2) .. "T"
 	elseif #stringnum == 14 then
 		return string.sub(stringnum, 1, 2) .. "." ..  string.sub(stringnum, 3, 3) .. "T"
 	elseif #stringnum == 15 then
-		return string.sub(stringnum, 1, 3) .. "T"
+		return string.sub(stringnum, 1, 3) .. "." ..  string.sub(stringnum, 4, 4) .. "T"
 	else
-		return string.sub(stringnum, 1, 4) .. "T"
+		return string.sub(stringnum, 1, 4) .. "." ..  string.sub(stringnum, 5, 5) .. "T"
 	end
 end
 
